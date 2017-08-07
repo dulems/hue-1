@@ -507,7 +507,7 @@ var Collection = function (vm, collection) {
     if (val == 'fixed'){
       self.autorefresh(false);
     }
-	  if (val == 'fixed' && self.timeFilter.from().length == 0) {
+    if (val == 'fixed' && self.timeFilter.from().length == 0) {
       $.ajax({
         type: "POST",
         url: "/dashboard/get_range_facet",
@@ -650,6 +650,12 @@ var Collection = function (vm, collection) {
         vm.search();
       });
     }
+    if (facet.properties.facets) {
+      facet.properties.facets.subscribe(function(newValue) {
+        console.log(ko.mapping.toJSON(newValue));
+        vm.search();
+      });
+    }
 
     // For Hue 4 facets only
     if (typeof facet.template != 'undefined') {
@@ -712,6 +718,7 @@ var Collection = function (vm, collection) {
         vm.search();
       });
     }
+
     if (typeof facet.properties.facets != 'undefined') {
       $.each(facet.properties.facets(), function (index, pivotFacet) {
         if (pivotFacet.aggregate && pivotFacet.aggregate.function) {
@@ -722,6 +729,7 @@ var Collection = function (vm, collection) {
       });
     }
   });
+
 
   self.template.rows.subscribe(function() {
     vm.search();
@@ -892,7 +900,6 @@ var Collection = function (vm, collection) {
         vm.search();
       });
       facet.properties.facets.push(pivot);
-      vm.search();
     }
   }
 
@@ -920,14 +927,11 @@ var Collection = function (vm, collection) {
         vm.search();
       });
       facet.properties.facets.push(pivot);
-      vm.search();
     }
   }
 
   self.removePivotFacetValue = function(facet) {
     facet['pivot_facet'].properties.facets.remove(facet['value']);
-
-    vm.search();
   }
 
   self.removeFacet = function (widget_id) {
