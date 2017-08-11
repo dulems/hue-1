@@ -32,6 +32,10 @@ DEFAULT_SCHEMA = 'hdfs'
 
 FS_GETTERS = {
   "hdfs": cluster.get_hdfs,
+  "wasb": cluster.get_hdfs,
+  "wasbs": cluster.get_hdfs,
+  "adl": cluster.get_hdfs,
+  "adls": cluster.get_hdfs,
   "s3a": aws.get_s3fs if is_s3_enabled() else None
 }
 
