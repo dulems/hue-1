@@ -871,7 +871,7 @@ class File(object):
     return data
 
   def overwrite(self, data):
-        self._fs.create(self._path, True, None, None, None, data)
+    self._fs.create(self._path, True, None, None, None, data)
 
   def write(self, data):
     """Append the data to the end of the file"""
