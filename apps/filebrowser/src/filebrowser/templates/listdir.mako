@@ -163,7 +163,6 @@ ${ fb_components.menubar() }
             </a>
             <ul class="dropdown-menu">
               <li><a href="javascript: void(0)" class="upload-link" title="${_('Files')}" data-bind="click: uploadFile"><i class="fa fa-file-o"></i> ${_('Files')}</a></li>
-              <li><a href="javascript: void(0)" class="upload-link" title="${_('Archive')}" data-bind="click: uploadArchive"><i class="fa fa-gift"></i> ${_('Zip/Tgz/Bz2 file')}</a></li>
             </ul>
           </div>
           <!-- /ko -->

@@ -1378,13 +1378,13 @@ from filebrowser.conf import ENABLE_EXTRACT_UPLOADED_ARCHIVE
           %if is_embeddable:
           huePubSub.publish('open.link', file.url);
           %else:
-          location.href = file.url;
+          location.href = "${url('filebrowser.views.download', path=urlencode('/'))}" + stripHashes(file.path);
           %endif
         }
       };
 
       self.editFile = function () {
-        location.href = "${url('filebrowser.views.edit', path='')}" + self.selectedFile().path;
+        location.href = "${url('filebrowser.views.download', path=urlencode('/'))}" + self.selectedFile().path;
       };
 
       self.downloadFile = function () {
